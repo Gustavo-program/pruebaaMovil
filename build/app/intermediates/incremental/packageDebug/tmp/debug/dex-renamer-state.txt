@@ -1,0 +1,4 @@
+#Tue Jun 22 23:32:12 COT 2021
+base.0=C\:\\_Cursos Cibertec(Ciclo 6)\\DesarrolloDeAplicacionesMovilesII\\CL3\\examenFinaFlutter-master\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\out\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex

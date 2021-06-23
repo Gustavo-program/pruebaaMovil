@@ -1,0 +1,1626 @@
+define(['dart_sdk', 'packages/json_utilities/json_utilities.dart', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/rendering/flex.dart', 'packages/flutter/src/painting/edge_insets.dart', 'packages/flutter/src/painting/box_decoration.dart', 'packages/flutter/src/painting/box_border.dart', 'packages/flutter/src/material/colors.dart', 'packages/flutter/src/painting/strut_style.dart', 'packages/json_table/src/json_table_column.dart', 'packages/flutter/src/widgets/single_child_scroll_view.dart', 'packages/flutter/src/painting/basic_types.dart', 'packages/flutter/src/material/expansion_tile.dart', 'packages/flutter/src/widgets/icon.dart', 'packages/flutter/src/material/icons.dart', 'packages/flutter/src/material/icon_button.dart', 'packages/flutter/src/material/checkbox.dart', 'packages/json_table/src/pagination_box.dart'], (function load__packages__json_table__src__table_column_dart(dart_sdk, packages__json_utilities__json_utilities$46dart, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__rendering__flex$46dart, packages__flutter__src__painting__edge_insets$46dart, packages__flutter__src__painting__box_decoration$46dart, packages__flutter__src__painting__box_border$46dart, packages__flutter__src__material__colors$46dart, packages__flutter__src__painting__strut_style$46dart, packages__json_table__src__json_table_column$46dart, packages__flutter__src__widgets__single_child_scroll_view$46dart, packages__flutter__src__painting__basic_types$46dart, packages__flutter__src__material__expansion_tile$46dart, packages__flutter__src__widgets__icon$46dart, packages__flutter__src__material__icons$46dart, packages__flutter__src__material__icon_button$46dart, packages__flutter__src__material__checkbox$46dart, packages__json_table__src__pagination_box$46dart) {
+  'use strict';
+  const core = dart_sdk.core;
+  const ui = dart_sdk.ui;
+  const _interceptors = dart_sdk._interceptors;
+  const collection = dart_sdk.collection;
+  const math = dart_sdk.math;
+  const dart = dart_sdk.dart;
+  const dartx = dart_sdk.dartx;
+  const json_utilities = packages__json_utilities__json_utilities$46dart.json_utilities;
+  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
+  const container = packages__flutter__src__widgets__widget_span$46dart.src__widgets__container;
+  const text = packages__flutter__src__widgets__widget_span$46dart.src__widgets__text;
+  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
+  const gesture_detector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__gesture_detector;
+  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
+  const flex = packages__flutter__src__rendering__flex$46dart.src__rendering__flex;
+  const edge_insets = packages__flutter__src__painting__edge_insets$46dart.src__painting__edge_insets;
+  const box_decoration = packages__flutter__src__painting__box_decoration$46dart.src__painting__box_decoration;
+  const box_border = packages__flutter__src__painting__box_border$46dart.src__painting__box_border;
+  const colors = packages__flutter__src__material__colors$46dart.src__material__colors;
+  const text_style = packages__flutter__src__painting__strut_style$46dart.src__painting__text_style;
+  const json_table_column = packages__json_table__src__json_table_column$46dart.src__json_table_column;
+  const single_child_scroll_view = packages__flutter__src__widgets__single_child_scroll_view$46dart.src__widgets__single_child_scroll_view;
+  const basic_types = packages__flutter__src__painting__basic_types$46dart.src__painting__basic_types;
+  const expansion_tile = packages__flutter__src__material__expansion_tile$46dart.src__material__expansion_tile;
+  const icon = packages__flutter__src__widgets__icon$46dart.src__widgets__icon;
+  const icons = packages__flutter__src__material__icons$46dart.src__material__icons;
+  const material = packages__flutter__src__material__icon_button$46dart.src__material__material;
+  const ink_well = packages__flutter__src__material__icon_button$46dart.src__material__ink_well;
+  const checkbox = packages__flutter__src__material__checkbox$46dart.src__material__checkbox;
+  const pagination_box = packages__json_table__src__pagination_box$46dart.src__pagination_box;
+  var table_column = Object.create(dart.library);
+  var json_table = Object.create(dart.library);
+  var json_table$ = Object.create(dart.library);
+  var $indexOf = dartx.indexOf;
+  var $map = dartx.map;
+  var $toList = dartx.toList;
+  var $toString = dartx.toString;
+  var $isNotEmpty = dartx.isNotEmpty;
+  var $cast = dartx.cast;
+  var $length = dartx.length;
+  var $ceil = dartx.ceil;
+  var $add = dartx.add;
+  var $where = dartx.where;
+  var $forEach = dartx.forEach;
+  var $sublist = dartx.sublist;
+  dart._checkModuleNullSafetyMode(false);
+  var T = {
+    _LocationL: () => (T._LocationL = dart.constFn(dart.legacy(widget_inspector._Location)))(),
+    ColumnL: () => (T.ColumnL = dart.constFn(dart.legacy(basic.Column)))(),
+    VoidToNull: () => (T.VoidToNull = dart.constFn(dart.fnType(core.Null, [])))(),
+    WidgetL: () => (T.WidgetL = dart.constFn(dart.legacy(framework.Widget)))(),
+    JSArrayOfWidgetL: () => (T.JSArrayOfWidgetL = dart.constFn(_interceptors.JSArray$(T.WidgetL())))(),
+    dynamicToColumnL: () => (T.dynamicToColumnL = dart.constFn(dart.fnType(T.ColumnL(), [dart.dynamic])))(),
+    StringL: () => (T.StringL = dart.constFn(dart.legacy(core.String)))(),
+    _IdentityHashSetOfStringL: () => (T._IdentityHashSetOfStringL = dart.constFn(collection._IdentityHashSet$(T.StringL())))(),
+    MapL: () => (T.MapL = dart.constFn(dart.legacy(core.Map)))(),
+    intL: () => (T.intL = dart.constFn(dart.legacy(core.int)))(),
+    JsonTableL: () => (T.JsonTableL = dart.constFn(dart.legacy(json_table.JsonTable)))(),
+    boolL: () => (T.boolL = dart.constFn(dart.legacy(core.bool)))(),
+    JsonTableColumnL: () => (T.JsonTableColumnL = dart.constFn(dart.legacy(json_table_column.JsonTableColumn)))(),
+    JsonTableColumnLToboolL: () => (T.JsonTableColumnLToboolL = dart.constFn(dart.fnType(T.boolL(), [T.JsonTableColumnL()])))(),
+    TableColumnL: () => (T.TableColumnL = dart.constFn(dart.legacy(table_column.TableColumn)))(),
+    JsonTableColumnLToTableColumnL: () => (T.JsonTableColumnLToTableColumnL = dart.constFn(dart.fnType(T.TableColumnL(), [T.JsonTableColumnL()])))(),
+    StringLToTableColumnL: () => (T.StringLToTableColumnL = dart.constFn(dart.fnType(T.TableColumnL(), [T.StringL()])))(),
+    JsonTableColumnLToNull: () => (T.JsonTableColumnLToNull = dart.constFn(dart.fnType(core.Null, [T.JsonTableColumnL()])))(),
+    dynamicToNull: () => (T.dynamicToNull = dart.constFn(dart.fnType(core.Null, [dart.dynamic])))()
+  };
+  var T$Eval = Object.assign({
+    _: () => T$Eval
+  }, T);
+  var S = {
+    _: () => S
+  };
+  var S$Eval = Object.assign({
+    _: () => S$Eval
+  }, S);
+  const CT = Object.create({
+    _: () => (C, CT)
+  });
+  dart.defineLazy(CT, {
+    get C2() {
+      return C[2] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 21,
+        [_Location_line]: 47,
+        [_Location_file]: null
+      });
+    },
+    get C3() {
+      return C[3] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "textAlign",
+        [_Location_column]: 21,
+        [_Location_line]: 48,
+        [_Location_file]: null
+      });
+    },
+    get C4() {
+      return C[4] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 21,
+        [_Location_line]: 49,
+        [_Location_file]: null
+      });
+    },
+    get C1() {
+      return C[1] = dart.constList([C[2] || CT.C2, C[3] || CT.C3, C[4] || CT.C4], T._LocationL());
+    },
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[1] || CT.C1,
+        [_Location_name]: null,
+        [_Location_column]: 26,
+        [_Location_line]: 46,
+        [_Location_file]: "file:///C:/Users/GUSTAVO/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/json_table-1.4.0/lib/src/table_column.dart"
+      });
+    },
+    get C7() {
+      return C[7] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "padding",
+        [_Location_column]: 19,
+        [_Location_line]: 41,
+        [_Location_file]: null
+      });
+    },
+    get C8() {
+      return C[8] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "decoration",
+        [_Location_column]: 19,
+        [_Location_line]: 42,
+        [_Location_file]: null
+      });
+    },
+    get C9() {
+      return C[9] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 19,
+        [_Location_line]: 46,
+        [_Location_file]: null
+      });
+    },
+    get C6() {
+      return C[6] = dart.constList([C[7] || CT.C7, C[8] || CT.C8, C[9] || CT.C9], T._LocationL());
+    },
+    get C5() {
+      return C[5] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[6] || CT.C6,
+        [_Location_name]: null,
+        [_Location_column]: 17,
+        [_Location_line]: 40,
+        [_Location_file]: "file:///C:/Users/GUSTAVO/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/json_table-1.4.0/lib/src/table_column.dart"
+      });
+    },
+    get C12() {
+      return C[12] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 39,
+        [_Location_line]: 94,
+        [_Location_file]: null
+      });
+    },
+    get C13() {
+      return C[13] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "textAlign",
+        [_Location_column]: 39,
+        [_Location_line]: 101,
+        [_Location_file]: null
+      });
+    },
+    get C14() {
+      return C[14] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 39,
+        [_Location_line]: 102,
+        [_Location_file]: null
+      });
+    },
+    get C11() {
+      return C[11] = dart.constList([C[12] || CT.C12, C[13] || CT.C13, C[14] || CT.C14], T._LocationL());
+    },
+    get C10() {
+      return C[10] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[11] || CT.C11,
+        [_Location_name]: null,
+        [_Location_column]: 44,
+        [_Location_line]: 93,
+        [_Location_file]: "file:///C:/Users/GUSTAVO/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/json_table-1.4.0/lib/src/table_column.dart"
+      });
+    },
+    get C17() {
+      return C[17] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "padding",
+        [_Location_column]: 37,
+        [_Location_line]: 86,
+        [_Location_file]: null
+      });
+    },
+    get C18() {
+      return C[18] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "decoration",
+        [_Location_column]: 37,
+        [_Location_line]: 88,
+        [_Location_file]: null
+      });
+    },
+    get C19() {
+      return C[19] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 37,
+        [_Location_line]: 93,
+        [_Location_file]: null
+      });
+    },
+    get C16() {
+      return C[16] = dart.constList([C[17] || CT.C17, C[18] || CT.C18, C[19] || CT.C19], T._LocationL());
+    },
+    get C15() {
+      return C[15] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[16] || CT.C16,
+        [_Location_name]: null,
+        [_Location_column]: 35,
+        [_Location_line]: 85,
+        [_Location_file]: "file:///C:/Users/GUSTAVO/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/json_table-1.4.0/lib/src/table_column.dart"
+      });
+    },
+    get C22() {
+      return C[22] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "color",
+        [_Location_column]: 29,
+        [_Location_line]: 68,
+        [_Location_file]: null
+      });
+    },
+    get C23() {
+      return C[23] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 29,
+        [_Location_line]: 75,
+        [_Location_file]: null
+      });
+    },
+    get C21() {
+      return C[21] = dart.constList([C[22] || CT.C22, C[23] || CT.C23], T._LocationL());
+    },
+    get C20() {
+      return C[20] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[21] || CT.C21,
+        [_Location_name]: null,
+        [_Location_column]: 34,
+        [_Location_line]: 67,
+        [_Location_file]: "file:///C:/Users/GUSTAVO/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/json_table-1.4.0/lib/src/table_column.dart"
+      });
+    },
+    get C26() {
+      return C[26] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onTap",
+        [_Location_column]: 27,
+        [_Location_line]: 64,
+        [_Location_file]: null
+      });
+    },
+    get C27() {
+      return C[27] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 27,
+        [_Location_line]: 67,
+        [_Location_file]: null
+      });
+    },
+    get C25() {
+      return C[25] = dart.constList([C[26] || CT.C26, C[27] || CT.C27], T._LocationL());
+    },
+    get C24() {
+      return C[24] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[25] || CT.C25,
+        [_Location_name]: null,
+        [_Location_column]: 25,
+        [_Location_line]: 63,
+        [_Location_file]: "file:///C:/Users/GUSTAVO/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/json_table-1.4.0/lib/src/table_column.dart"
+      });
+    },
+    get C30() {
+      return C[30] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "crossAxisAlignment",
+        [_Location_column]: 23,
+        [_Location_line]: 61,
+        [_Location_file]: null
+      });
+    },
+    get C31() {
+      return C[31] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 23,
+        [_Location_line]: 62,
+        [_Location_file]: null
+      });
+    },
+    get C29() {
+      return C[29] = dart.constList([C[30] || CT.C30, C[31] || CT.C31], T._LocationL());
+    },
+    get C28() {
+      return C[28] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[29] || CT.C29,
+        [_Location_name]: null,
+        [_Location_column]: 33,
+        [_Location_line]: 60,
+        [_Location_file]: "file:///C:/Users/GUSTAVO/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/json_table-1.4.0/lib/src/table_column.dart"
+      });
+    },
+    get C34() {
+      return C[34] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 15,
+        [_Location_line]: 58,
+        [_Location_file]: null
+      });
+    },
+    get C33() {
+      return C[33] = dart.constList([C[34] || CT.C34], T._LocationL());
+    },
+    get C32() {
+      return C[32] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[33] || CT.C33,
+        [_Location_name]: null,
+        [_Location_column]: 20,
+        [_Location_line]: 57,
+        [_Location_file]: "file:///C:/Users/GUSTAVO/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/json_table-1.4.0/lib/src/table_column.dart"
+      });
+    },
+    get C37() {
+      return C[37] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 13,
+        [_Location_line]: 57,
+        [_Location_file]: null
+      });
+    },
+    get C36() {
+      return C[36] = dart.constList([C[37] || CT.C37], T._LocationL());
+    },
+    get C35() {
+      return C[35] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[36] || CT.C36,
+        [_Location_name]: null,
+        [_Location_column]: 11,
+        [_Location_line]: 56,
+        [_Location_file]: "file:///C:/Users/GUSTAVO/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/json_table-1.4.0/lib/src/table_column.dart"
+      });
+    },
+    get C40() {
+      return C[40] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "crossAxisAlignment",
+        [_Location_column]: 9,
+        [_Location_line]: 36,
+        [_Location_file]: null
+      });
+    },
+    get C41() {
+      return C[41] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 9,
+        [_Location_line]: 37,
+        [_Location_file]: null
+      });
+    },
+    get C39() {
+      return C[39] = dart.constList([C[40] || CT.C40, C[41] || CT.C41], T._LocationL());
+    },
+    get C38() {
+      return C[38] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[39] || CT.C39,
+        [_Location_name]: null,
+        [_Location_column]: 14,
+        [_Location_line]: 35,
+        [_Location_file]: "file:///C:/Users/GUSTAVO/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/json_table-1.4.0/lib/src/table_column.dart"
+      });
+    },
+    get C44() {
+      return C[44] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 7,
+        [_Location_line]: 35,
+        [_Location_file]: null
+      });
+    },
+    get C43() {
+      return C[43] = dart.constList([C[44] || CT.C44], T._LocationL());
+    },
+    get C42() {
+      return C[42] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[43] || CT.C43,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 34,
+        [_Location_file]: "file:///C:/Users/GUSTAVO/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/json_table-1.4.0/lib/src/table_column.dart"
+      });
+    },
+    get C47() {
+      return C[47] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "icon",
+        [_Location_column]: 37,
+        [_Location_line]: 85,
+        [_Location_file]: null
+      });
+    },
+    get C46() {
+      return C[46] = dart.constList([C[47] || CT.C47], T._LocationL());
+    },
+    get C45() {
+      return C[45] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[46] || CT.C46,
+        [_Location_name]: null,
+        [_Location_column]: 26,
+        [_Location_line]: 85,
+        [_Location_file]: "file:///C:/Users/GUSTAVO/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/json_table-1.4.0/lib/src/json_table.dart"
+      });
+    },
+    get C50() {
+      return C[50] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 61,
+        [_Location_line]: 87,
+        [_Location_file]: null
+      });
+    },
+    get C51() {
+      return C[51] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 19,
+        [_Location_line]: 88,
+        [_Location_file]: null
+      });
+    },
+    get C49() {
+      return C[49] = dart.constList([C[50] || CT.C50, C[51] || CT.C51], T._LocationL());
+    },
+    get C48() {
+      return C[48] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[49] || CT.C49,
+        [_Location_name]: null,
+        [_Location_column]: 24,
+        [_Location_line]: 86,
+        [_Location_file]: "file:///C:/Users/GUSTAVO/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/json_table-1.4.0/lib/src/json_table.dart"
+      });
+    },
+    get C54() {
+      return C[54] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "value",
+        [_Location_column]: 35,
+        [_Location_line]: 106,
+        [_Location_file]: null
+      });
+    },
+    get C55() {
+      return C[55] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onChanged",
+        [_Location_column]: 35,
+        [_Location_line]: 107,
+        [_Location_file]: null
+      });
+    },
+    get C53() {
+      return C[53] = dart.constList([C[54] || CT.C54, C[55] || CT.C55], T._LocationL());
+    },
+    get C52() {
+      return C[52] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[53] || CT.C53,
+        [_Location_name]: null,
+        [_Location_column]: 33,
+        [_Location_line]: 105,
+        [_Location_file]: "file:///C:/Users/GUSTAVO/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/json_table-1.4.0/lib/src/json_table.dart"
+      });
+    },
+    get C58() {
+      return C[58] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 38,
+        [_Location_line]: 109,
+        [_Location_file]: null
+      });
+    },
+    get C57() {
+      return C[57] = dart.constList([C[58] || CT.C58], T._LocationL());
+    },
+    get C56() {
+      return C[56] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[57] || CT.C57,
+        [_Location_name]: null,
+        [_Location_column]: 33,
+        [_Location_line]: 109,
+        [_Location_file]: "file:///C:/Users/GUSTAVO/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/json_table-1.4.0/lib/src/json_table.dart"
+      });
+    },
+    get C61() {
+      return C[61] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "width",
+        [_Location_column]: 35,
+        [_Location_line]: 111,
+        [_Location_file]: null
+      });
+    },
+    get C60() {
+      return C[60] = dart.constList([C[61] || CT.C61], T._LocationL());
+    },
+    get C59() {
+      return C[59] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[60] || CT.C60,
+        [_Location_name]: null,
+        [_Location_column]: 33,
+        [_Location_line]: 110,
+        [_Location_file]: "file:///C:/Users/GUSTAVO/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/json_table-1.4.0/lib/src/json_table.dart"
+      });
+    },
+    get C64() {
+      return C[64] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "mainAxisSize",
+        [_Location_column]: 31,
+        [_Location_line]: 103,
+        [_Location_file]: null
+      });
+    },
+    get C65() {
+      return C[65] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 31,
+        [_Location_line]: 104,
+        [_Location_file]: null
+      });
+    },
+    get C63() {
+      return C[63] = dart.constList([C[64] || CT.C64, C[65] || CT.C65], T._LocationL());
+    },
+    get C62() {
+      return C[62] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[63] || CT.C63,
+        [_Location_name]: null,
+        [_Location_column]: 36,
+        [_Location_line]: 102,
+        [_Location_file]: "file:///C:/Users/GUSTAVO/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/json_table-1.4.0/lib/src/json_table.dart"
+      });
+    },
+    get C68() {
+      return C[68] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 29,
+        [_Location_line]: 102,
+        [_Location_file]: null
+      });
+    },
+    get C69() {
+      return C[69] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onTap",
+        [_Location_column]: 29,
+        [_Location_line]: 115,
+        [_Location_file]: null
+      });
+    },
+    get C67() {
+      return C[67] = dart.constList([C[68] || CT.C68, C[69] || CT.C69], T._LocationL());
+    },
+    get C66() {
+      return C[66] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[67] || CT.C67,
+        [_Location_name]: null,
+        [_Location_column]: 34,
+        [_Location_line]: 101,
+        [_Location_file]: "file:///C:/Users/GUSTAVO/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/json_table-1.4.0/lib/src/json_table.dart"
+      });
+    },
+    get C72() {
+      return C[72] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "color",
+        [_Location_column]: 27,
+        [_Location_line]: 100,
+        [_Location_file]: null
+      });
+    },
+    get C73() {
+      return C[73] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 27,
+        [_Location_line]: 101,
+        [_Location_file]: null
+      });
+    },
+    get C71() {
+      return C[71] = dart.constList([C[72] || CT.C72, C[73] || CT.C73], T._LocationL());
+    },
+    get C70() {
+      return C[70] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[71] || CT.C71,
+        [_Location_name]: null,
+        [_Location_column]: 25,
+        [_Location_line]: 99,
+        [_Location_file]: "file:///C:/Users/GUSTAVO/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/json_table-1.4.0/lib/src/json_table.dart"
+      });
+    },
+    get C76() {
+      return C[76] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "runSpacing",
+        [_Location_column]: 21,
+        [_Location_line]: 95,
+        [_Location_file]: null
+      });
+    },
+    get C77() {
+      return C[77] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "direction",
+        [_Location_column]: 21,
+        [_Location_line]: 96,
+        [_Location_file]: null
+      });
+    },
+    get C78() {
+      return C[78] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 21,
+        [_Location_line]: 97,
+        [_Location_file]: null
+      });
+    },
+    get C75() {
+      return C[75] = dart.constList([C[76] || CT.C76, C[77] || CT.C77, C[78] || CT.C78], T._LocationL());
+    },
+    get C74() {
+      return C[74] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[75] || CT.C75,
+        [_Location_name]: null,
+        [_Location_column]: 19,
+        [_Location_line]: 94,
+        [_Location_file]: "file:///C:/Users/GUSTAVO/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/json_table-1.4.0/lib/src/json_table.dart"
+      });
+    },
+    get C81() {
+      return C[81] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "leading",
+        [_Location_column]: 17,
+        [_Location_line]: 85,
+        [_Location_file]: null
+      });
+    },
+    get C82() {
+      return C[82] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "title",
+        [_Location_column]: 17,
+        [_Location_line]: 86,
+        [_Location_file]: null
+      });
+    },
+    get C83() {
+      return C[83] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 17,
+        [_Location_line]: 93,
+        [_Location_file]: null
+      });
+    },
+    get C80() {
+      return C[80] = dart.constList([C[81] || CT.C81, C[82] || CT.C82, C[83] || CT.C83], T._LocationL());
+    },
+    get C79() {
+      return C[79] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[80] || CT.C80,
+        [_Location_name]: null,
+        [_Location_column]: 22,
+        [_Location_line]: 84,
+        [_Location_file]: "file:///C:/Users/GUSTAVO/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/json_table-1.4.0/lib/src/json_table.dart"
+      });
+    },
+    get C86() {
+      return C[86] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "margin",
+        [_Location_column]: 15,
+        [_Location_line]: 83,
+        [_Location_file]: null
+      });
+    },
+    get C87() {
+      return C[87] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 15,
+        [_Location_line]: 84,
+        [_Location_file]: null
+      });
+    },
+    get C85() {
+      return C[85] = dart.constList([C[86] || CT.C86, C[87] || CT.C87], T._LocationL());
+    },
+    get C84() {
+      return C[84] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[85] || CT.C85,
+        [_Location_name]: null,
+        [_Location_column]: 13,
+        [_Location_line]: 82,
+        [_Location_file]: "file:///C:/Users/GUSTAVO/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/json_table-1.4.0/lib/src/json_table.dart"
+      });
+    },
+    get C90() {
+      return C[90] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "header",
+        [_Location_column]: 34,
+        [_Location_line]: 138,
+        [_Location_file]: null
+      });
+    },
+    get C91() {
+      return C[91] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "dataList",
+        [_Location_column]: 29,
+        [_Location_line]: 139,
+        [_Location_file]: null
+      });
+    },
+    get C92() {
+      return C[92] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "tableHeaderBuilder",
+        [_Location_column]: 36,
+        [_Location_line]: 140,
+        [_Location_file]: null
+      });
+    },
+    get C93() {
+      return C[93] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "tableCellBuilder",
+        [_Location_column]: 36,
+        [_Location_line]: 141,
+        [_Location_file]: null
+      });
+    },
+    get C94() {
+      return C[94] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "column",
+        [_Location_column]: 29,
+        [_Location_line]: 142,
+        [_Location_file]: null
+      });
+    },
+    get C95() {
+      return C[95] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onRowTap",
+        [_Location_column]: 29,
+        [_Location_line]: 143,
+        [_Location_file]: null
+      });
+    },
+    get C96() {
+      return C[96] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "highlightedRowIndex",
+        [_Location_column]: 29,
+        [_Location_line]: 144,
+        [_Location_file]: null
+      });
+    },
+    get C97() {
+      return C[97] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "allowRowHighlight",
+        [_Location_column]: 36,
+        [_Location_line]: 145,
+        [_Location_file]: null
+      });
+    },
+    get C98() {
+      return C[98] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "rowHighlightColor",
+        [_Location_column]: 36,
+        [_Location_line]: 146,
+        [_Location_file]: null
+      });
+    },
+    get C89() {
+      return C[89] = dart.constList([C[90] || CT.C90, C[91] || CT.C91, C[92] || CT.C92, C[93] || CT.C93, C[94] || CT.C94, C[95] || CT.C95, C[96] || CT.C96, C[97] || CT.C97, C[98] || CT.C98], T._LocationL());
+    },
+    get C88() {
+      return C[88] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[89] || CT.C89,
+        [_Location_name]: null,
+        [_Location_column]: 37,
+        [_Location_line]: 137,
+        [_Location_file]: "file:///C:/Users/GUSTAVO/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/json_table-1.4.0/lib/src/json_table.dart"
+      });
+    },
+    get C101() {
+      return C[101] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 21,
+        [_Location_line]: 134,
+        [_Location_file]: null
+      });
+    },
+    get C100() {
+      return C[100] = dart.constList([C[101] || CT.C101], T._LocationL());
+    },
+    get C99() {
+      return C[99] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[100] || CT.C100,
+        [_Location_name]: null,
+        [_Location_column]: 19,
+        [_Location_line]: 133,
+        [_Location_file]: "file:///C:/Users/GUSTAVO/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/json_table-1.4.0/lib/src/json_table.dart"
+      });
+    },
+    get C104() {
+      return C[104] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "header",
+        [_Location_column]: 29,
+        [_Location_line]: 155,
+        [_Location_file]: null
+      });
+    },
+    get C105() {
+      return C[105] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "dataList",
+        [_Location_column]: 29,
+        [_Location_line]: 156,
+        [_Location_file]: null
+      });
+    },
+    get C106() {
+      return C[106] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "tableHeaderBuilder",
+        [_Location_column]: 36,
+        [_Location_line]: 157,
+        [_Location_file]: null
+      });
+    },
+    get C107() {
+      return C[107] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "tableCellBuilder",
+        [_Location_column]: 36,
+        [_Location_line]: 158,
+        [_Location_file]: null
+      });
+    },
+    get C108() {
+      return C[108] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "column",
+        [_Location_column]: 29,
+        [_Location_line]: 159,
+        [_Location_file]: null
+      });
+    },
+    get C109() {
+      return C[109] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onRowTap",
+        [_Location_column]: 29,
+        [_Location_line]: 160,
+        [_Location_file]: null
+      });
+    },
+    get C110() {
+      return C[110] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "highlightedRowIndex",
+        [_Location_column]: 29,
+        [_Location_line]: 161,
+        [_Location_file]: null
+      });
+    },
+    get C111() {
+      return C[111] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "allowRowHighlight",
+        [_Location_column]: 36,
+        [_Location_line]: 162,
+        [_Location_file]: null
+      });
+    },
+    get C112() {
+      return C[112] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "rowHighlightColor",
+        [_Location_column]: 36,
+        [_Location_line]: 163,
+        [_Location_file]: null
+      });
+    },
+    get C103() {
+      return C[103] = dart.constList([C[104] || CT.C104, C[105] || CT.C105, C[106] || CT.C106, C[107] || CT.C107, C[108] || CT.C108, C[109] || CT.C109, C[110] || CT.C110, C[111] || CT.C111, C[112] || CT.C112], T._LocationL());
+    },
+    get C102() {
+      return C[102] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[103] || CT.C103,
+        [_Location_name]: null,
+        [_Location_column]: 39,
+        [_Location_line]: 154,
+        [_Location_file]: "file:///C:/Users/GUSTAVO/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/json_table-1.4.0/lib/src/json_table.dart"
+      });
+    },
+    get C115() {
+      return C[115] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 21,
+        [_Location_line]: 152,
+        [_Location_file]: null
+      });
+    },
+    get C114() {
+      return C[114] = dart.constList([C[115] || CT.C115], T._LocationL());
+    },
+    get C113() {
+      return C[113] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[114] || CT.C114,
+        [_Location_name]: null,
+        [_Location_column]: 19,
+        [_Location_line]: 151,
+        [_Location_file]: "file:///C:/Users/GUSTAVO/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/json_table-1.4.0/lib/src/json_table.dart"
+      });
+    },
+    get C118() {
+      return C[118] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "scrollDirection",
+        [_Location_column]: 13,
+        [_Location_line]: 131,
+        [_Location_file]: null
+      });
+    },
+    get C119() {
+      return C[119] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 13,
+        [_Location_line]: 132,
+        [_Location_file]: null
+      });
+    },
+    get C117() {
+      return C[117] = dart.constList([C[118] || CT.C118, C[119] || CT.C119], T._LocationL());
+    },
+    get C116() {
+      return C[116] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[117] || CT.C117,
+        [_Location_name]: null,
+        [_Location_column]: 11,
+        [_Location_line]: 130,
+        [_Location_file]: "file:///C:/Users/GUSTAVO/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/json_table-1.4.0/lib/src/json_table.dart"
+      });
+    },
+    get C122() {
+      return C[122] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "pageIndex",
+        [_Location_column]: 15,
+        [_Location_line]: 171,
+        [_Location_file]: null
+      });
+    },
+    get C123() {
+      return C[123] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "pagesCount",
+        [_Location_column]: 15,
+        [_Location_line]: 172,
+        [_Location_file]: null
+      });
+    },
+    get C124() {
+      return C[124] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onLeftButtonTap",
+        [_Location_column]: 15,
+        [_Location_line]: 173,
+        [_Location_file]: null
+      });
+    },
+    get C125() {
+      return C[125] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onRightButtonTap",
+        [_Location_column]: 15,
+        [_Location_line]: 180,
+        [_Location_file]: null
+      });
+    },
+    get C121() {
+      return C[121] = dart.constList([C[122] || CT.C122, C[123] || CT.C123, C[124] || CT.C124, C[125] || CT.C125], T._LocationL());
+    },
+    get C120() {
+      return C[120] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[121] || CT.C121,
+        [_Location_name]: null,
+        [_Location_column]: 13,
+        [_Location_line]: 170,
+        [_Location_file]: "file:///C:/Users/GUSTAVO/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/json_table-1.4.0/lib/src/json_table.dart"
+      });
+    },
+    get C128() {
+      return C[128] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "mainAxisSize",
+        [_Location_column]: 9,
+        [_Location_line]: 79,
+        [_Location_file]: null
+      });
+    },
+    get C129() {
+      return C[129] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 9,
+        [_Location_line]: 80,
+        [_Location_file]: null
+      });
+    },
+    get C127() {
+      return C[127] = dart.constList([C[128] || CT.C128, C[129] || CT.C129], T._LocationL());
+    },
+    get C126() {
+      return C[126] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[127] || CT.C127,
+        [_Location_name]: null,
+        [_Location_column]: 14,
+        [_Location_line]: 78,
+        [_Location_file]: "file:///C:/Users/GUSTAVO/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/json_table-1.4.0/lib/src/json_table.dart"
+      });
+    },
+    get C132() {
+      return C[132] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "scrollDirection",
+        [_Location_column]: 7,
+        [_Location_line]: 77,
+        [_Location_file]: null
+      });
+    },
+    get C133() {
+      return C[133] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 7,
+        [_Location_line]: 78,
+        [_Location_file]: null
+      });
+    },
+    get C131() {
+      return C[131] = dart.constList([C[132] || CT.C132, C[133] || CT.C133], T._LocationL());
+    },
+    get C130() {
+      return C[130] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[131] || CT.C131,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 76,
+        [_Location_file]: "file:///C:/Users/GUSTAVO/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/json_table-1.4.0/lib/src/json_table.dart"
+      });
+    }
+  }, false);
+  var C = Array(134).fill(void 0);
+  var I = [
+    "package:json_table/src/table_column.dart",
+    "package:json_table/src/json_table.dart",
+    "file:///C:/Users/GUSTAVO/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/json_table-1.4.0/lib/src/json_table.dart"
+  ];
+  var header$ = dart.privateName(table_column, "TableColumn.header");
+  var dataList$ = dart.privateName(table_column, "TableColumn.dataList");
+  var tableHeaderBuilder$ = dart.privateName(table_column, "TableColumn.tableHeaderBuilder");
+  var tableCellBuilder$ = dart.privateName(table_column, "TableColumn.tableCellBuilder");
+  var column$ = dart.privateName(table_column, "TableColumn.column");
+  var jsonUtils = dart.privateName(table_column, "TableColumn.jsonUtils");
+  var onRowTap$ = dart.privateName(table_column, "TableColumn.onRowTap");
+  var highlightedRowIndex$ = dart.privateName(table_column, "TableColumn.highlightedRowIndex");
+  var allowRowHighlight$ = dart.privateName(table_column, "TableColumn.allowRowHighlight");
+  var rowHighlightColor$ = dart.privateName(table_column, "TableColumn.rowHighlightColor");
+  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
+  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
+  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
+  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
+  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
+  table_column.TableColumn = class TableColumn extends framework.StatelessWidget {
+    get header() {
+      return this[header$];
+    }
+    set header(value) {
+      super.header = value;
+    }
+    get dataList() {
+      return this[dataList$];
+    }
+    set dataList(value) {
+      super.dataList = value;
+    }
+    get tableHeaderBuilder() {
+      return this[tableHeaderBuilder$];
+    }
+    set tableHeaderBuilder(value) {
+      super.tableHeaderBuilder = value;
+    }
+    get tableCellBuilder() {
+      return this[tableCellBuilder$];
+    }
+    set tableCellBuilder(value) {
+      super.tableCellBuilder = value;
+    }
+    get column() {
+      return this[column$];
+    }
+    set column(value) {
+      super.column = value;
+    }
+    get jsonUtils() {
+      return this[jsonUtils];
+    }
+    set jsonUtils(value) {
+      super.jsonUtils = value;
+    }
+    get onRowTap() {
+      return this[onRowTap$];
+    }
+    set onRowTap(value) {
+      super.onRowTap = value;
+    }
+    get highlightedRowIndex() {
+      return this[highlightedRowIndex$];
+    }
+    set highlightedRowIndex(value) {
+      super.highlightedRowIndex = value;
+    }
+    get allowRowHighlight() {
+      return this[allowRowHighlight$];
+    }
+    set allowRowHighlight(value) {
+      super.allowRowHighlight = value;
+    }
+    get rowHighlightColor() {
+      return this[rowHighlightColor$];
+    }
+    set rowHighlightColor(value) {
+      super.rowHighlightColor = value;
+    }
+    build(context) {
+      let t0;
+      return new basic.IntrinsicWidth.new({child: new basic.Column.new({crossAxisAlignment: flex.CrossAxisAlignment.stretch, children: T.JSArrayOfWidgetL().of([this.tableHeaderBuilder != null ? (t0 = this.header, this.tableHeaderBuilder(t0)) : new container.Container.new({padding: new edge_insets.EdgeInsets.symmetric({horizontal: 4.0, vertical: 2.0}), decoration: new box_decoration.BoxDecoration.new({border: box_border.Border.all({width: 0.5}), color: colors.Colors.grey._get(300)}), child: new text.Text.new(this.header, {textAlign: ui.TextAlign.center, style: new text_style.TextStyle.new({fontWeight: ui.FontWeight.w700, fontSize: 14.0, color: colors.Colors.black87}), $creationLocationd_0dea112b090073317d4: C[0] || CT.C0}), $creationLocationd_0dea112b090073317d4: C[5] || CT.C5}), new container.Container.new({child: new basic.Column.new({children: this.dataList[$map](T.ColumnL(), dart.fn(rowMap => {
+                  let t0, t0$, t0$0, t0$1, t0$2, t0$3, t0$4, t0$5, t0$6, t0$7;
+                  return new basic.Column.new({crossAxisAlignment: flex.CrossAxisAlignment.stretch, children: T.JSArrayOfWidgetL().of([new gesture_detector.GestureDetector.new({onTap: dart.fn(() => {
+                          let t1, t0;
+                          t0 = this.dataList[$indexOf](rowMap);
+                          t1 = rowMap;
+                          this.onRowTap(t0, t1);
+                        }, T.VoidToNull()), child: new container.Container.new({color: dart.test(this.allowRowHighlight) && this.highlightedRowIndex != null && this.highlightedRowIndex == this.dataList[$indexOf](rowMap) ? (t0 = this.rowHighlightColor, t0 == null ? colors.Colors.yellowAccent.withOpacity(0.7) : t0) : null, child: this.tableCellBuilder != null ? (t0$3 = this.getFormattedValue(this.jsonUtils.get(rowMap, (t0$0 = (t0$ = this.column, t0$ == null ? null : t0$.field), t0$0 == null ? this.header : t0$0), (t0$2 = (t0$1 = this.column, t0$1 == null ? null : t0$1.defaultValue), t0$2 == null ? "" : t0$2))), this.tableCellBuilder(t0$3)) : new container.Container.new({padding: new edge_insets.EdgeInsets.symmetric({horizontal: 4.0, vertical: 2.0}), decoration: new box_decoration.BoxDecoration.new({border: box_border.Border.all({width: 0.5, color: colors.Colors.grey.withOpacity(0.5)})}), child: new text.Text.new(this.getFormattedValue(this.jsonUtils.get(rowMap, (t0$5 = (t0$4 = this.column, t0$4 == null ? null : t0$4.field), t0$5 == null ? this.header : t0$5), (t0$7 = (t0$6 = this.column, t0$6 == null ? null : t0$6.defaultValue), t0$7 == null ? "" : t0$7))), {textAlign: ui.TextAlign.center, style: new text_style.TextStyle.new({fontSize: 14.0}), $creationLocationd_0dea112b090073317d4: C[10] || CT.C10}), $creationLocationd_0dea112b090073317d4: C[15] || CT.C15}), $creationLocationd_0dea112b090073317d4: C[20] || CT.C20}), $creationLocationd_0dea112b090073317d4: C[24] || CT.C24})]), $creationLocationd_0dea112b090073317d4: C[28] || CT.C28});
+                }, T.dynamicToColumnL()))[$toList](), $creationLocationd_0dea112b090073317d4: C[32] || CT.C32}), $creationLocationd_0dea112b090073317d4: C[35] || CT.C35})]), $creationLocationd_0dea112b090073317d4: C[38] || CT.C38}), $creationLocationd_0dea112b090073317d4: C[42] || CT.C42});
+    }
+    getFormattedValue(value) {
+      let t0, t0$, t0$0, t1, t0$1;
+      if (value == null) {
+        t0$ = (t0 = this.column, t0 == null ? null : t0.defaultValue);
+        return t0$ == null ? "" : t0$;
+      }
+      if ((t0$0 = this.column, t0$0 == null ? null : t0$0.valueBuilder) != null) {
+        t0$1 = this.column;
+        t1 = value;
+        return t0$1.valueBuilder(t1);
+      }
+      return dart.toString(value);
+    }
+  };
+  (table_column.TableColumn.new = function(header, dataList, tableHeaderBuilder, tableCellBuilder, column, onRowTap, highlightedRowIndex, allowRowHighlight, rowHighlightColor, opts) {
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this[jsonUtils] = new json_utilities.JSONUtils.new();
+    this[header$] = header;
+    this[dataList$] = dataList;
+    this[tableHeaderBuilder$] = tableHeaderBuilder;
+    this[tableCellBuilder$] = tableCellBuilder;
+    this[column$] = column;
+    this[onRowTap$] = onRowTap;
+    this[highlightedRowIndex$] = highlightedRowIndex;
+    this[allowRowHighlight$] = allowRowHighlight;
+    this[rowHighlightColor$] = rowHighlightColor;
+    table_column.TableColumn.__proto__.new.call(this, {$creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = table_column.TableColumn.prototype;
+  dart.addTypeTests(table_column.TableColumn);
+  dart.addTypeCaches(table_column.TableColumn);
+  dart.setMethodSignature(table_column.TableColumn, () => ({
+    __proto__: dart.getMethods(table_column.TableColumn.__proto__),
+    build: dart.fnType(dart.legacy(framework.Widget), [dart.legacy(framework.BuildContext)]),
+    getFormattedValue: dart.fnType(dart.legacy(core.String), [dart.dynamic])
+  }));
+  dart.setLibraryUri(table_column.TableColumn, I[0]);
+  dart.setFieldSignature(table_column.TableColumn, () => ({
+    __proto__: dart.getFields(table_column.TableColumn.__proto__),
+    header: dart.finalFieldType(dart.legacy(core.String)),
+    dataList: dart.finalFieldType(dart.legacy(core.List)),
+    tableHeaderBuilder: dart.finalFieldType(dart.legacy(dart.fnType(dart.legacy(framework.Widget), [dart.legacy(core.String)]))),
+    tableCellBuilder: dart.finalFieldType(dart.legacy(dart.fnType(dart.legacy(framework.Widget), [dart.dynamic]))),
+    column: dart.finalFieldType(dart.legacy(json_table_column.JsonTableColumn)),
+    jsonUtils: dart.finalFieldType(dart.legacy(json_utilities.JSONUtils)),
+    onRowTap: dart.finalFieldType(dart.legacy(dart.fnType(dart.dynamic, [dart.legacy(core.int), dart.dynamic]))),
+    highlightedRowIndex: dart.finalFieldType(dart.legacy(core.int)),
+    allowRowHighlight: dart.finalFieldType(dart.legacy(core.bool)),
+    rowHighlightColor: dart.finalFieldType(dart.legacy(ui.Color))
+  }));
+  var dataList$0 = dart.privateName(json_table, "JsonTable.dataList");
+  var tableHeaderBuilder$0 = dart.privateName(json_table, "JsonTable.tableHeaderBuilder");
+  var tableCellBuilder$0 = dart.privateName(json_table, "JsonTable.tableCellBuilder");
+  var columns$ = dart.privateName(json_table, "JsonTable.columns");
+  var showColumnToggle$ = dart.privateName(json_table, "JsonTable.showColumnToggle");
+  var allowRowHighlight$0 = dart.privateName(json_table, "JsonTable.allowRowHighlight");
+  var rowHighlightColor$0 = dart.privateName(json_table, "JsonTable.rowHighlightColor");
+  var paginationRowCount$ = dart.privateName(json_table, "JsonTable.paginationRowCount");
+  var onRowSelect$ = dart.privateName(json_table, "JsonTable.onRowSelect");
+  json_table.JsonTable = class JsonTable extends framework.StatefulWidget {
+    get dataList() {
+      return this[dataList$0];
+    }
+    set dataList(value) {
+      super.dataList = value;
+    }
+    get tableHeaderBuilder() {
+      return this[tableHeaderBuilder$0];
+    }
+    set tableHeaderBuilder(value) {
+      super.tableHeaderBuilder = value;
+    }
+    get tableCellBuilder() {
+      return this[tableCellBuilder$0];
+    }
+    set tableCellBuilder(value) {
+      super.tableCellBuilder = value;
+    }
+    get columns() {
+      return this[columns$];
+    }
+    set columns(value) {
+      super.columns = value;
+    }
+    get showColumnToggle() {
+      return this[showColumnToggle$];
+    }
+    set showColumnToggle(value) {
+      super.showColumnToggle = value;
+    }
+    get allowRowHighlight() {
+      return this[allowRowHighlight$0];
+    }
+    set allowRowHighlight(value) {
+      super.allowRowHighlight = value;
+    }
+    get rowHighlightColor() {
+      return this[rowHighlightColor$0];
+    }
+    set rowHighlightColor(value) {
+      super.rowHighlightColor = value;
+    }
+    get paginationRowCount() {
+      return this[paginationRowCount$];
+    }
+    set paginationRowCount(value) {
+      super.paginationRowCount = value;
+    }
+    get onRowSelect() {
+      return this[onRowSelect$];
+    }
+    set onRowSelect(value) {
+      super.onRowSelect = value;
+    }
+    createState() {
+      return new json_table._JsonTableState.new();
+    }
+  };
+  (json_table.JsonTable.new = function(dataList, opts) {
+    let key = opts && 'key' in opts ? opts.key : null;
+    let tableHeaderBuilder = opts && 'tableHeaderBuilder' in opts ? opts.tableHeaderBuilder : null;
+    let tableCellBuilder = opts && 'tableCellBuilder' in opts ? opts.tableCellBuilder : null;
+    let columns = opts && 'columns' in opts ? opts.columns : null;
+    let showColumnToggle = opts && 'showColumnToggle' in opts ? opts.showColumnToggle : false;
+    let allowRowHighlight = opts && 'allowRowHighlight' in opts ? opts.allowRowHighlight : false;
+    let rowHighlightColor = opts && 'rowHighlightColor' in opts ? opts.rowHighlightColor : null;
+    let paginationRowCount = opts && 'paginationRowCount' in opts ? opts.paginationRowCount : null;
+    let onRowSelect = opts && 'onRowSelect' in opts ? opts.onRowSelect : null;
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this[dataList$0] = dataList;
+    this[tableHeaderBuilder$0] = tableHeaderBuilder;
+    this[tableCellBuilder$0] = tableCellBuilder;
+    this[columns$] = columns;
+    this[showColumnToggle$] = showColumnToggle;
+    this[allowRowHighlight$0] = allowRowHighlight;
+    this[rowHighlightColor$0] = rowHighlightColor;
+    this[paginationRowCount$] = paginationRowCount;
+    this[onRowSelect$] = onRowSelect;
+    json_table.JsonTable.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = json_table.JsonTable.prototype;
+  dart.addTypeTests(json_table.JsonTable);
+  dart.addTypeCaches(json_table.JsonTable);
+  dart.setMethodSignature(json_table.JsonTable, () => ({
+    __proto__: dart.getMethods(json_table.JsonTable.__proto__),
+    createState: dart.fnType(dart.legacy(json_table._JsonTableState), [])
+  }));
+  dart.setLibraryUri(json_table.JsonTable, I[1]);
+  dart.setFieldSignature(json_table.JsonTable, () => ({
+    __proto__: dart.getFields(json_table.JsonTable.__proto__),
+    dataList: dart.finalFieldType(dart.legacy(core.List)),
+    tableHeaderBuilder: dart.finalFieldType(dart.legacy(dart.fnType(dart.legacy(framework.Widget), [dart.legacy(core.String)]))),
+    tableCellBuilder: dart.finalFieldType(dart.legacy(dart.fnType(dart.legacy(framework.Widget), [dart.dynamic]))),
+    columns: dart.finalFieldType(dart.legacy(core.List$(dart.legacy(json_table_column.JsonTableColumn)))),
+    showColumnToggle: dart.finalFieldType(dart.legacy(core.bool)),
+    allowRowHighlight: dart.finalFieldType(dart.legacy(core.bool)),
+    rowHighlightColor: dart.finalFieldType(dart.legacy(ui.Color)),
+    paginationRowCount: dart.finalFieldType(dart.legacy(core.int)),
+    onRowSelect: dart.finalFieldType(dart.legacy(dart.fnType(dart.void, [dart.legacy(core.int), dart.dynamic])))
+  }));
+  var _showPagination = dart.privateName(json_table, "_showPagination");
+  var _getPaginatedData = dart.privateName(json_table, "_getPaginatedData");
+  var _showLeftButton = dart.privateName(json_table, "_showLeftButton");
+  json_table._JsonTableState = class _JsonTableState extends framework.State$(dart.legacy(json_table.JsonTable)) {
+    initState() {
+      super.initState();
+      this.init();
+    }
+    init() {
+      if (!(this.widget.dataList != null && dart.test(this.widget.dataList[$isNotEmpty]))) dart.assertFailed(null, I[2], 57, 12, "widget.dataList != null && widget.dataList.isNotEmpty");
+      this.data = this.widget.dataList[$cast](T.MapL());
+      this.pageIndex = 0;
+      if (dart.test(this[_showPagination]())) this.paginationRowCount = math.min(T.intL(), this.widget.paginationRowCount, this.data[$length]);
+      if (dart.test(this[_showPagination]())) this.pagesCount = (dart.notNull(this.data[$length]) / dart.notNull(this.paginationRowCount))[$ceil]();
+      this.setHeaderList();
+    }
+    didUpdateWidget(oldWidget) {
+      T.JsonTableL().as(oldWidget);
+      if (!dart.equals(oldWidget.dataList, this.widget.dataList)) this.init();
+      super.didUpdateWidget(oldWidget);
+    }
+    build(context) {
+      return new single_child_scroll_view.SingleChildScrollView.new({scrollDirection: basic_types.Axis.vertical, child: new basic.Column.new({mainAxisSize: flex.MainAxisSize.min, children: (() => {
+            let t0 = T.JSArrayOfWidgetL().of([]);
+            if (dart.test(this.widget.showColumnToggle)) t0[$add](new container.Container.new({margin: new edge_insets.EdgeInsets.only({bottom: 4.0}), child: new expansion_tile.ExpansionTile.new({leading: new icon.Icon.new(icons.Icons.filter_list, {$creationLocationd_0dea112b090073317d4: C[45] || CT.C45}), title: new text.Text.new("ADD FILTERS (" + dart.str(this.filterHeaderList[$length]) + ")", {style: new text_style.TextStyle.new({fontSize: 13.0, fontWeight: ui.FontWeight.w500}), $creationLocationd_0dea112b090073317d4: C[48] || CT.C48}), children: T.JSArrayOfWidgetL().of([new basic.Wrap.new({runSpacing: -12.0, direction: basic_types.Axis.horizontal, children: (() => {
+                      let t1 = T.JSArrayOfWidgetL().of([]);
+                      for (let header of this.headerList)
+                        t1[$add](new material.Material.new({color: colors.Colors.transparent, child: new ink_well.InkWell.new({child: new basic.Row.new({mainAxisSize: flex.MainAxisSize.min, children: T.JSArrayOfWidgetL().of([new checkbox.Checkbox.new({value: this.filterHeaderList.contains(header), onChanged: null, $creationLocationd_0dea112b090073317d4: C[52] || CT.C52}), new text.Text.new(header, {$creationLocationd_0dea112b090073317d4: C[56] || CT.C56}), new basic.SizedBox.new({width: 4.0, $creationLocationd_0dea112b090073317d4: C[59] || CT.C59})]), $creationLocationd_0dea112b090073317d4: C[62] || CT.C62}), onTap: dart.fn(() => {
+                              this.setState(dart.fn(() => {
+                                if (dart.test(this.filterHeaderList.contains(header)))
+                                  this.filterHeaderList.remove(header);
+                                else
+                                  this.filterHeaderList.add(header);
+                              }, T.VoidToNull()));
+                            }, T.VoidToNull()), $creationLocationd_0dea112b090073317d4: C[66] || CT.C66}), $creationLocationd_0dea112b090073317d4: C[70] || CT.C70}));
+                      return t1;
+                    })(), $creationLocationd_0dea112b090073317d4: C[74] || CT.C74})]), $creationLocationd_0dea112b090073317d4: C[79] || CT.C79}), $creationLocationd_0dea112b090073317d4: C[84] || CT.C84}));
+            t0[$add](new single_child_scroll_view.SingleChildScrollView.new({scrollDirection: basic_types.Axis.horizontal, child: this.widget.columns != null ? new basic.Row.new({children: this.widget.columns[$where](dart.fn(item => this.filterHeaderList.contains(item.field), T.JsonTableColumnLToboolL()))[$map](T.TableColumnL(), dart.fn(item => new table_column.TableColumn.new(item.label, this[_getPaginatedData](), this.widget.tableHeaderBuilder, this.widget.tableCellBuilder, item, dart.bind(this, 'onRowTap'), this.highlightedRowIndex, this.widget.allowRowHighlight, this.widget.rowHighlightColor, {$creationLocationd_0dea112b090073317d4: C[88] || CT.C88}), T.JsonTableColumnLToTableColumnL()))[$toList](), $creationLocationd_0dea112b090073317d4: C[99] || CT.C99}) : new basic.Row.new({children: this.filterHeaderList[$map](T.TableColumnL(), dart.fn(header => new table_column.TableColumn.new(header, this[_getPaginatedData](), this.widget.tableHeaderBuilder, this.widget.tableCellBuilder, null, dart.bind(this, 'onRowTap'), this.highlightedRowIndex, this.widget.allowRowHighlight, this.widget.rowHighlightColor, {$creationLocationd_0dea112b090073317d4: C[102] || CT.C102}), T.StringLToTableColumnL()))[$toList](), $creationLocationd_0dea112b090073317d4: C[113] || CT.C113}), $creationLocationd_0dea112b090073317d4: C[116] || CT.C116}));
+            if (dart.test(this[_showPagination]())) t0[$add](new pagination_box.PaginationBox.new({pageIndex: this.pageIndex, pagesCount: this.pagesCount, onLeftButtonTap: dart.test(this[_showLeftButton]()) ? dart.fn(() => {
+                this.setState(dart.fn(() => {
+                  this.pageIndex = dart.notNull(this.pageIndex) - 1;
+                }, T.VoidToNull()));
+              }, T.VoidToNull()) : null, onRightButtonTap: dart.test(this.showRightButton()) ? dart.fn(() => {
+                this.setState(dart.fn(() => {
+                  this.pageIndex = dart.notNull(this.pageIndex) + 1;
+                }, T.VoidToNull()));
+              }, T.VoidToNull()) : null, $creationLocationd_0dea112b090073317d4: C[120] || CT.C120}));
+            return t0;
+          })(), $creationLocationd_0dea112b090073317d4: C[126] || CT.C126}), $creationLocationd_0dea112b090073317d4: C[130] || CT.C130});
+    }
+    extractColumnHeaders() {
+      let headers = new (T._IdentityHashSetOfStringL()).new();
+      if (this.widget.columns != null) {
+        this.widget.columns[$forEach](dart.fn(item => {
+          headers.add(item.field);
+        }, T.JsonTableColumnLToNull()));
+      } else {
+        this.widget.dataList[$forEach](dart.fn(map => {
+          dart.dsend(dart.dload(map, 'keys'), 'forEach', [dart.fn(key => {
+              headers.add(T.StringL().as(key));
+            }, T.dynamicToNull())]);
+        }, T.dynamicToNull()));
+      }
+      return headers;
+    }
+    setHeaderList() {
+      let headerList = this.extractColumnHeaders();
+      if (!(headerList != null)) dart.assertFailed(null, I[2], 211, 12, "headerList != null");
+      this.headerList = headerList;
+      this.filterHeaderList.addAll(headerList);
+    }
+    onRowTap(index, rowMap) {
+      let t4, t3, t2;
+      this.setState(dart.fn(() => {
+        if (this.highlightedRowIndex == index)
+          this.highlightedRowIndex = null;
+        else
+          this.highlightedRowIndex = index;
+      }, T.VoidToNull()));
+      if (this.widget.onRowSelect != null) {
+        t2 = this.widget;
+        t3 = index;
+        t4 = rowMap;
+        t2.onRowSelect(t3, t4);
+      }
+    }
+    [_getPaginatedData]() {
+      if (this.paginationRowCount != null) {
+        let startIndex = this.pageIndex === 0 ? 0 : dart.notNull(this.pageIndex) * dart.notNull(this.paginationRowCount);
+        let endIndex = math.min(T.intL(), startIndex + dart.notNull(this.paginationRowCount), dart.notNull(this.data[$length]) - 1);
+        if (endIndex === dart.notNull(this.data[$length]) - 1)
+          return this.data[$sublist](startIndex, endIndex + 1)[$toList]({growable: false});
+        else
+          return this.data[$sublist](startIndex, endIndex)[$toList]({growable: false});
+      } else
+        return this.data;
+    }
+    [_showLeftButton]() {
+      return dart.notNull(this.pageIndex) > 0;
+    }
+    showRightButton() {
+      return dart.notNull(this.pageIndex) < dart.notNull(this.pagesCount) - 1;
+    }
+    [_showPagination]() {
+      return this.widget.paginationRowCount != null;
+    }
+  };
+  (json_table._JsonTableState.new = function() {
+    this.headerList = new (T._IdentityHashSetOfStringL()).new();
+    this.filterHeaderList = new (T._IdentityHashSetOfStringL()).new();
+    this.highlightedRowIndex = null;
+    this.pageIndex = 0;
+    this.paginationRowCount = null;
+    this.pagesCount = null;
+    this.data = null;
+    json_table._JsonTableState.__proto__.new.call(this);
+    ;
+  }).prototype = json_table._JsonTableState.prototype;
+  dart.addTypeTests(json_table._JsonTableState);
+  dart.addTypeCaches(json_table._JsonTableState);
+  dart.setMethodSignature(json_table._JsonTableState, () => ({
+    __proto__: dart.getMethods(json_table._JsonTableState.__proto__),
+    init: dart.fnType(dart.void, []),
+    didUpdateWidget: dart.fnType(dart.void, [dart.legacy(core.Object)]),
+    build: dart.fnType(dart.legacy(framework.Widget), [dart.legacy(framework.BuildContext)]),
+    extractColumnHeaders: dart.fnType(dart.legacy(core.Set$(dart.legacy(core.String))), []),
+    setHeaderList: dart.fnType(dart.void, []),
+    onRowTap: dart.fnType(dart.dynamic, [dart.legacy(core.int), dart.dynamic]),
+    [_getPaginatedData]: dart.fnType(dart.legacy(core.List), []),
+    [_showLeftButton]: dart.fnType(dart.legacy(core.bool), []),
+    showRightButton: dart.fnType(dart.legacy(core.bool), []),
+    [_showPagination]: dart.fnType(dart.legacy(core.bool), [])
+  }));
+  dart.setLibraryUri(json_table._JsonTableState, I[1]);
+  dart.setFieldSignature(json_table._JsonTableState, () => ({
+    __proto__: dart.getFields(json_table._JsonTableState.__proto__),
+    headerList: dart.fieldType(dart.legacy(core.Set$(dart.legacy(core.String)))),
+    filterHeaderList: dart.fieldType(dart.legacy(core.Set$(dart.legacy(core.String)))),
+    highlightedRowIndex: dart.fieldType(dart.legacy(core.int)),
+    pageIndex: dart.fieldType(dart.legacy(core.int)),
+    paginationRowCount: dart.fieldType(dart.legacy(core.int)),
+    pagesCount: dart.fieldType(dart.legacy(core.int)),
+    data: dart.fieldType(dart.legacy(core.List$(dart.legacy(core.Map))))
+  }));
+  dart.trackLibraries("packages/json_table/src/table_column.dart", {
+    "package:json_table/src/table_column.dart": table_column,
+    "package:json_table/src/json_table.dart": json_table,
+    "package:json_table/json_table.dart": json_table$
+  }, {
+  }, '{"version":3,"sourceRoot":"","sources":["table_column.dart","json_table.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;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","file":"../../../../../../../../../../../packages/json_table/src/table_column.dart.lib.js"}');
+  // Exports:
+  return {
+    src__table_column: table_column,
+    src__json_table: json_table,
+    json_table: json_table$
+  };
+}));
+
+//# sourceMappingURL=table_column.dart.lib.js.map
